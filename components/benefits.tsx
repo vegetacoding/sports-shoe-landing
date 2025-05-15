@@ -1,4 +1,6 @@
+"use client"
 import { Shield, Truck, RotateCcw, Clock } from "lucide-react"
+import { motion } from "framer-motion"
 
 const benefits = [
   {
@@ -14,7 +16,7 @@ const benefits = [
   {
     icon: <RotateCcw className="h-10 w-10 text-primary" />,
     title: "Đổi trả dễ dàng",
-    description: "Đổi tr�� sản phẩm trong vòng 30 ngày nếu không vừa ý.",
+    description: "Đổi trả sản phẩm trong vòng 30 ngày nếu không vừa ý.",
   },
   {
     icon: <Clock className="h-10 w-10 text-primary" />,
@@ -23,27 +25,71 @@ const benefits = [
   },
 ]
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5
+    }
+  }
+}
+
 export default function Benefits() {
   return (
     <section className="w-full py-12 md:py-24 bg-muted">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center space-y-4 text-center"
+        >
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Tại sao chọn chúng tôi?</h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
               Chúng tôi cam kết mang đến trải nghiệm mua sắm tốt nhất cho bạn
             </p>
           </div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        </motion.div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12"
+        >
           {benefits.map((benefit, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-sm">
-              <div className="p-3 rounded-full bg-primary/10 mb-4">{benefit.icon}</div>
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-sm"
+            >
+              <motion.div 
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+                className="p-3 rounded-full bg-primary/10 mb-4"
+              >
+                {benefit.icon}
+              </motion.div>
               <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
               <p className="text-muted-foreground">{benefit.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
