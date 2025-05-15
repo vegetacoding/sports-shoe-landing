@@ -4,7 +4,7 @@ export const productImages = {
     gallery: [
       "https://supersports.com.vn/cdn/shop/files/AH8050-027-1.png?v=1726739143&width=1000",
       "https://supersports.com.vn/cdn/shop/files/AH8050-027-3.png?v=1726739167&width=1000",
-      "https://supersports.com.vn/cdn/shop/files/AH8050-027-3.png?v=1726739167&width=1000",
+      "https://supersports.com.vn/cdn/shop/files/AH8050-027-4.png?v=1726739167&width=1000",
       "https://supersports.com.vn/cdn/shop/files/AH8050-027-5.png?v=1726739191&width=1000"
     ]
   },
